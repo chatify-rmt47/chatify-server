@@ -1,3 +1,4 @@
+const MessageController = require('../controllers/MessageController');
 const UserController = require('../controllers/userController');
 
 const router = require('express').Router();
@@ -11,5 +12,7 @@ router.post('/signup', UserController.signUp);
 router.post('/login', UserController.login);
 
 router.post('/logout', UserController.logout);
+
+router.post('/send-message/:id', MessageController.sendMessage)
 
 module.exports = router;
