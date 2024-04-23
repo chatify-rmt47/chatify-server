@@ -64,5 +64,9 @@ class UserController {
       next(error);
     }
   }
+
+  static async login(req, res, next)
 }
+
+
 module.exports = UserController;
