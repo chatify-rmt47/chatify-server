@@ -1,5 +1,6 @@
 const MessageController = require('../controllers/MessageController');
 const UserController = require('../controllers/userController');
+const authentication = require('../middleware/authentication');
 
 const router = require('express').Router();
 
@@ -12,6 +13,10 @@ router.post('/signup', UserController.signUp);
 router.post('/login', UserController.login);
 
 router.post('/logout', UserController.logout);
+
+router.use(authentication)
+
+router.get("/get-message/:id", MessageController.getMessage)
 
 router.post('/send-message/:id', MessageController.sendMessage)
 
