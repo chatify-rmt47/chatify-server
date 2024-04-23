@@ -1,12 +1,12 @@
+const UserController = require('../controllers/userController');
+
 const router = require('express').Router();
 
 router.get('/', (req, res) => {
   res.send('Server nyala way');
 });
 
-router.get('/signup', (req, res) => {
-  res.send('SIGNUP ROUTE');
-});
+router.post('/signup', UserController.signUp);
 
 router.get('/login', (req, res) => {
   res.send('Login ROUTE');
