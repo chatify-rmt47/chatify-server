@@ -8,11 +8,8 @@ router.get('/', (req, res) => {
 
 router.post('/signup', UserController.signUp);
 
-router.get('/login', (req, res) => {
-  res.send('Login ROUTE');
-});
+router.post('/login', UserController.login);
 
-router.get('/logout', (req, res) => {
-  res.send('Logout ROUTE');
-});
+router.post('/logout', UserController.logout);
+
 module.exports = router;

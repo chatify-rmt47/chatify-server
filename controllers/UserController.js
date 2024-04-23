@@ -1,4 +1,4 @@
-const { bcryptData } = require('../helpers/bcrypt');
+const { bcryptData, comparePassword } = require('../helpers/bcrypt');
 const generateTokenAndSetCookie = require('../helpers/generateToken');
 const User = require('../model/user');
 
@@ -62,6 +62,48 @@ class UserController {
     } catch (error) {
       console.log(error);
       next(error);
+    }
+  }
+
+  static async login(req, res, next) {
+    try {
+      const { username, password } = req.body;
+      const user = await User.findOne({ username });
+      if (!user) {
+        throw {
+          name: 'validateError',
+          message: 'Invalid username or password',
+        };
+      }
+      const checkPassword = comparePassword(password, user.password);
+
+      if (!checkPassword) {
+        throw {
+          name: 'validateError',
+          message: 'Invalid username or password',
+        };
+      }
+
+      generateTokenAndSetCookie(user._id, res);
+
+      res.status(200).json({
+        _id: user._id,
+        fullName: user.fullName,
+        username: user.username,
+        profilePic: user.profilePic,
+      });
+    } catch (error) {
+      console.log(error);
+      next(error);
+    }
+  }
+
+  static async logout(req, res, next) {
+    try {
+      res.cookie('jwt', '', { maxAge: 0 });
+      res.status(200).json({ message: 'Logged out success' });
+    } catch (error) {
+      console.log(error);
     }
   }
 }
