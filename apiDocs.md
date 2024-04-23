@@ -139,6 +139,11 @@ _response (201 - created)_
   }
 }
 ```
+_response (401 - Unauthorized )_
+
+```json
+{ "message": "Error authentication" }
+```
 
 ## 5. `GET` get message
 
@@ -172,6 +177,11 @@ _response (200 - ok)_
         "__v": 0
     },...
 ]
+```
+_response (401 - Unauthorized )_
+
+```json
+{ "message": "Error authentication" }
 ```
 
 ## Global Error
