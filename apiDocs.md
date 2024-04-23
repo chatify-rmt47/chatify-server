@@ -6,8 +6,10 @@ List of available endpoints:
 
 - `POST` /signup
 - `POST` /register
+- `POST` /logout
 - `POST` /send-message/:id
 - `GET` /get-message/:id
+- `GET` /get-user
 
 ## 1. `POST` signup
 
@@ -176,6 +178,38 @@ _response (200 - ok)_
         "updatedAt": "2024-04-23T15:09:41.390Z",
         "__v": 0
     },...
+]
+```
+_response (401 - Unauthorized )_
+
+```json
+{ "message": "Error authentication" }
+```
+## 6. `GET` get user
+
+- headers
+
+```json
+{
+  "cookies": "jwt=<string>"
+}
+```
+
+
+_response (200 - ok)_
+
+```json
+[
+    {
+        "_id": "662785611bc07dd297e16469",
+        "fullName": "Nathaniel Kevin",
+        "username": "Kevin",
+        "gender": "male",
+        "profilePic": "https://avatar.iran.liara.run/public/boy?username=Kevin",
+        "createdAt": "2024-04-23T09:54:42.092Z",
+        "updatedAt": "2024-04-23T09:54:42.092Z",
+        "__v": 0
+    }
 ]
 ```
 _response (401 - Unauthorized )_
