@@ -7,10 +7,11 @@ class UserController {
     try {
       const { fullName, username, password, confirmPassword, gender } =
         req.body;
-      if (password != confirmPassword) {
+
+      if (!fullName || fullName == '') {
         throw {
           name: 'validateError',
-          message: 'Passwords and confirm password does not match',
+          message: 'Fullname cannot be empty',
         };
       }
 
@@ -28,6 +29,12 @@ class UserController {
         };
       }
 
+      if (password != confirmPassword) {
+        throw {
+          name: 'validateError',
+          message: 'Passwords and confirm password does not match',
+        };
+      }
       if (!gender || gender == '') {
         throw {
           name: 'validateError',

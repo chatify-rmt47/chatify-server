@@ -40,15 +40,23 @@ _response(400 - Bad request)_
 
 ```json
 {
+    "message": "Fullname cannot be empty"
+}
+OR
+{
+  "message": "Username cannot be empty"
+}
+OR
+{
+  "message": "Password cannot be empty"
+}
+OR
+{
     "message": "Passwords and confirm password does not match"
 }
 OR
 {
-    "message": "Username cannot be empty"
-}
-OR
-{
-    "message": "Password cannot be empty"
+    "message": "Gender cannot be empty"
 }
 OR
 {
@@ -141,6 +149,7 @@ _response (201 - created)_
   }
 }
 ```
+
 _response (401 - Unauthorized )_
 
 ```json
@@ -180,11 +189,13 @@ _response (200 - ok)_
     },...
 ]
 ```
+
 _response (401 - Unauthorized )_
 
 ```json
 { "message": "Error authentication" }
 ```
+
 ## 6. `GET` get user
 
 - headers
@@ -195,23 +206,23 @@ _response (401 - Unauthorized )_
 }
 ```
 
-
 _response (200 - ok)_
 
 ```json
 [
-    {
-        "_id": "662785611bc07dd297e16469",
-        "fullName": "Nathaniel Kevin",
-        "username": "Kevin",
-        "gender": "male",
-        "profilePic": "https://avatar.iran.liara.run/public/boy?username=Kevin",
-        "createdAt": "2024-04-23T09:54:42.092Z",
-        "updatedAt": "2024-04-23T09:54:42.092Z",
-        "__v": 0
-    }
+  {
+    "_id": "662785611bc07dd297e16469",
+    "fullName": "Nathaniel Kevin",
+    "username": "Kevin",
+    "gender": "male",
+    "profilePic": "https://avatar.iran.liara.run/public/boy?username=Kevin",
+    "createdAt": "2024-04-23T09:54:42.092Z",
+    "updatedAt": "2024-04-23T09:54:42.092Z",
+    "__v": 0
+  }
 ]
 ```
+
 _response (401 - Unauthorized )_
 
 ```json
