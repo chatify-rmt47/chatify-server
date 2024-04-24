@@ -9,21 +9,15 @@ class MessageController {
       const { id: ReceiverId } = req.params;
       const SenderId = req.user._id;
 
-      //   console.log(message, "<< message");
-      //   console.log(ReceiverId, "<< ReceiverId");
-      //   console.log(SenderId, "<< SenderId");
-
       let conversation = await Conversation.findOne({
         participants: { $all: [SenderId, ReceiverId] },
       });
-      //   console.log(conversation);
 
       if (!conversation) {
         conversation = await Conversation.create({
           participants: [SenderId, ReceiverId],
         });
       }
-      //   console.log(conversation);
 
       let newMessage = new Message({
         SenderId,
@@ -38,7 +32,6 @@ class MessageController {
       await Promise.all([conversation.save(), newMessage.save()]);
       const receiverSocketId = getReceiverSocketId(ReceiverId);
       if (receiverSocketId) {
-        // io.to(<socket_id>).emit() used to send events to specific client
         io.to(receiverSocketId).emit("newMessage", newMessage);
       }
 
@@ -54,8 +47,7 @@ class MessageController {
 
       const conversation = await Conversation.findOne({
         participants: { $all: [SenderId, userToChatId] },
-      }).populate("messages"); // NOT REFERENCE BUT ACTUAL messages
-      console.log(conversation);
+      }).populate("messages"); 
 
       if (!conversation) return res.status(200).json([]);
 
