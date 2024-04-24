@@ -129,6 +129,13 @@ _response (201 - created)_
   }
 }
 ```
+_response(400 - Bad request)_
+
+```json
+{
+    "message": "Message can't be empty"
+}
+```
 _response (401 - Unauthorized )_
 
 ```json
