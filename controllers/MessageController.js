@@ -6,6 +6,11 @@ class MessageController {
   static async sendMessage(req, res, next) {
     try {
       const { messages } = req.body;
+      if (!messages || messages=='')
+        throw {
+          name: "validateError",
+          message: "Message can't be empty",
+        };
       const { id: ReceiverId } = req.params;
       const SenderId = req.user._id;
 
