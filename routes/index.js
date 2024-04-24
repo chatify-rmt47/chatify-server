@@ -1,5 +1,5 @@
 const MessageController = require('../controllers/MessageController');
-const UserController = require('../controllers/userController');
+const UserController = require('../controllers/UserController');
 const authentication = require('../middleware/authentication');
 
 const router = require('express').Router();
