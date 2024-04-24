@@ -91,12 +91,10 @@ OR
 ```
 
 ## 3. `POST` send message
-
 - headers
-
 ```json
 {
-  "cookies": "jwt=<string>"
+    "authorization": "Bearer <token>"
 }
 ```
 
@@ -138,12 +136,10 @@ _response (401 - Unauthorized )_
 ```
 
 ## 4. `GET` get message
-
 - headers
-
 ```json
 {
-  "cookies": "jwt=<string>"
+    "authorization": "Bearer <token>"
 }
 ```
 
@@ -178,14 +174,11 @@ _response (401 - Unauthorized )_
 ## 5. `GET` get user
 
 - headers
-
 ```json
 {
-  "cookies": "jwt=<string>"
+    "authorization": "Bearer <token>"
 }
 ```
-
-
 _response (200 - ok)_
 
 ```json
