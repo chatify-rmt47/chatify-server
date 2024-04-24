@@ -1,5 +1,6 @@
 const { bcryptData, comparePassword } = require('../helpers/bcrypt');
-const generateTokenAndSetCookie = require('../helpers/generateToken');
+const generateToken = require('../helpers/generateToken');
+
 const User = require('../model/user');
 
 class UserController {
@@ -63,13 +64,14 @@ class UserController {
       });
 
       if (newUser) {
-        generateTokenAndSetCookie(newUser._id, res);
+        let access_token = generateToken(newUser._id, res);
         await newUser.save();
         res.status(201).json({
           _id: newUser.id,
           fullName: newUser.fullName,
           username: newUser.username,
           profilePic: newUser.profilePic,
+          access_token,
         });
       }
     } catch (error) {
@@ -97,26 +99,18 @@ class UserController {
         };
       }
 
-      generateTokenAndSetCookie(user._id, res);
+      let access_token = generateToken(user._id, res);
 
       res.status(200).json({
         _id: user._id,
         fullName: user.fullName,
         username: user.username,
         profilePic: user.profilePic,
+        access_token,
       });
     } catch (error) {
       console.log(error);
       next(error);
-    }
-  }
-
-  static async logout(req, res, next) {
-    try {
-      res.cookie('jwt', '', { maxAge: 0 });
-      res.status(200).json({ message: 'Logged out success' });
-    } catch (error) {
-      console.log(error);
     }
   }
 
