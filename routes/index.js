@@ -14,10 +14,10 @@ router.post('/login', UserController.login);
 
 router.use(authentication);
 
-router.get('/get-message/:id', MessageController.getMessage);
+router.get('/messages/:id', MessageController.getMessage);
 
-router.post('/send-message/:id', MessageController.sendMessage);
+router.post('/messages/:id', MessageController.sendMessage);
 
-router.get('/get-user', UserController.getUserData);
+router.get('/users', UserController.getUserData);
 
 module.exports = router;
