@@ -5,10 +5,10 @@
 List of available endpoints:
 
 - `POST` /signup
-- `POST` /register
-- `POST` /send-message/:id
-- `GET` /get-message/:id
-- `GET` /get-user
+- `POST` /login
+- `POST` /messages/:id
+- `GET` /messages/:id
+- `GET` /users
 
 ## 1. `POST` signup
 
@@ -90,7 +90,7 @@ OR
 }
 ```
 
-## 3. `POST` send message
+## 3. `POST` messages/:id
 - headers
 ```json
 {
@@ -135,7 +135,7 @@ _response (401 - Unauthorized )_
 { "message": "Error authentication" }
 ```
 
-## 4. `GET` get message
+## 4. `GET` messages/:id
 - headers
 ```json
 {
@@ -171,7 +171,7 @@ _response (401 - Unauthorized )_
 ```json
 { "message": "Error authentication" }
 ```
-## 5. `GET` get user
+## 5. `GET` users
 
 - headers
 ```json
