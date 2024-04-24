@@ -6,7 +6,6 @@ List of available endpoints:
 
 - `POST` /signup
 - `POST` /register
-- `POST` /logout
 - `POST` /send-message/:id
 - `GET` /get-message/:id
 - `GET` /get-user
@@ -40,23 +39,15 @@ _response(400 - Bad request)_
 
 ```json
 {
-    "message": "Fullname cannot be empty"
-}
-OR
-{
-  "message": "Username cannot be empty"
-}
-OR
-{
-  "message": "Password cannot be empty"
-}
-OR
-{
     "message": "Passwords and confirm password does not match"
 }
 OR
 {
-    "message": "Gender cannot be empty"
+    "message": "Username cannot be empty"
+}
+OR
+{
+    "message": "Password cannot be empty"
 }
 OR
 {
@@ -79,10 +70,11 @@ _response (200 - ok)_
 
 ```json
 {
-  "_id": "662794dc7a8a16edaa7680f6",
-  "fullName": "John Doe",
-  "username": "John",
-  "profilePic": "https://avatar.iran.liara.run/public/boy?username=John"
+    "_id": "662794dc7a8a16edaa7680f6",
+    "fullName": "John Doe",
+    "username": "John",
+    "profilePic": "https://avatar.iran.liara.run/public/boy?username=John",
+    "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjI3OTRkYzdhOGExNmVkYWE3NjgwZjYiLCJpYXQiOjE3MTM5MzUzMTUsImV4cCI6MTcxNTIzMTMxNX0.dYYHJ7u7y05GFSma3HxUZJlWi1S-qgIYgVIrE4iBcxo"
 }
 ```
 
@@ -98,23 +90,11 @@ OR
 }
 ```
 
-## 3. `POST` logout
-
-_response (200 - ok)_
-
-```json
-{
-  "message": "Logged out success"
-}
-```
-
-## 4. `POST` send message
-
+## 3. `POST` send message
 - headers
-
 ```json
 {
-  "cookies": "jwt=<string>"
+    "authorization": "Bearer <token>"
 }
 ```
 
@@ -149,20 +129,17 @@ _response (201 - created)_
   }
 }
 ```
-
 _response (401 - Unauthorized )_
 
 ```json
 { "message": "Error authentication" }
 ```
 
-## 5. `GET` get message
-
+## 4. `GET` get message
 - headers
-
 ```json
 {
-  "cookies": "jwt=<string>"
+    "authorization": "Bearer <token>"
 }
 ```
 
@@ -189,40 +166,35 @@ _response (200 - ok)_
     },...
 ]
 ```
-
 _response (401 - Unauthorized )_
 
 ```json
 { "message": "Error authentication" }
 ```
-
-## 6. `GET` get user
+## 5. `GET` get user
 
 - headers
-
 ```json
 {
-  "cookies": "jwt=<string>"
+    "authorization": "Bearer <token>"
 }
 ```
-
 _response (200 - ok)_
 
 ```json
 [
-  {
-    "_id": "662785611bc07dd297e16469",
-    "fullName": "Nathaniel Kevin",
-    "username": "Kevin",
-    "gender": "male",
-    "profilePic": "https://avatar.iran.liara.run/public/boy?username=Kevin",
-    "createdAt": "2024-04-23T09:54:42.092Z",
-    "updatedAt": "2024-04-23T09:54:42.092Z",
-    "__v": 0
-  }
+    {
+        "_id": "662785611bc07dd297e16469",
+        "fullName": "Nathaniel Kevin",
+        "username": "Kevin",
+        "gender": "male",
+        "profilePic": "https://avatar.iran.liara.run/public/boy?username=Kevin",
+        "createdAt": "2024-04-23T09:54:42.092Z",
+        "updatedAt": "2024-04-23T09:54:42.092Z",
+        "__v": 0
+    }
 ]
 ```
-
 _response (401 - Unauthorized )_
 
 ```json
