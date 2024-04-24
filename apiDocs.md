@@ -5,7 +5,7 @@
 List of available endpoints:
 
 - `POST` /signup
-- `POST` /register
+- `POST` /login
 - `POST` /messages/:id
 - `GET` /messages/:id
 - `GET` /users
