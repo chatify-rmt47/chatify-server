@@ -28,6 +28,12 @@ class UserController {
         };
       }
 
+      if (!gender || gender == '') {
+        throw {
+          name: 'validateError',
+          message: 'Gender cannot be empty',
+        };
+      }
       const user = await User.findOne({ username });
       if (user) {
         throw {
